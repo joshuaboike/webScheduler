@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br><h2><table bgcolor = #ffcb05>
+{% if api_error %}
+	<br>
+	<td>Getting the API terms failed!
+		Did you set the API token?</td>
+	</table></h2>
+{% else %}
+	<td> Select Your Term </td>
+	</table></center></h2>
+{% endif %}
+
+{% set count = 0 %}
+{% for term in terms %}
+{% if term['TermDescr'] %}
+	<center><button><a href="/{{term['TermCode']}}"><font color = black> {{ term['TermDescr'] }} </font></a></button>
+	</br></br>
+	{% set count = 1 %}
+{% endif %}
+{% endfor %}
+
+{% if count == 0 %}
+	<table bgcolor = white>
+	<td>Terms unavailable, API may be down</td>
+	<tr>
+	<td><center><button><a href="2010"><font color = black> Override for Fall 2014 </font></a></button></center></td></tr>
+	<tr>
+	<td><center><button><a href="2020"><font color = black> Override for Winter 2015 </font></a></button></center></td>
+	</tr>
+	</table>
+{% endif %}
+
+{% endblock %}

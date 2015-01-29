@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br><h2><table bgcolor = #ffcb05>
+{% if api_error %}
+	<br>
+	<td>Getting the API terms failed!
+		Did you set the API token?</td>
+	</table>
+{% else %}
+	<td> Select Your School </td>
+	</table></h2>
+{% endif %}
+
+
+<table bgcolor = white>
+{% for school in schools %}
+	<tr>
+		<td><button>
+		<a href="/{{term}}/{{school['SchoolCode']}}">
+		<font color = black> {{ school['SchoolCode'] }} </font></a>
+		</button></td>
+		<td>{{school['SchoolDescr']}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+</br>
+<footer><center><table bgcolor = #ffcb05>
+<td><a href='/'><font color = black> Back To Main Page </td><td>_______________</td>
+<td><a href='/mybackpack'><font color = black> View Your Backpack!
+</font></a></td></table></center>
+</footer>
+
+{% endblock %}

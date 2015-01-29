@@ -1,0 +1,38 @@
+html
+{
+	position: relative;
+	min-height: 100%;
+}
+body
+{
+	margin-top: 1%;
+	margin-bottom: 45px;
+	background-color: #00274c;
+}
+h1, h2
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+table
+{
+	border: 3px groove gray;
+	padding: 1px black;
+	margin-left: auto;
+	margin-right: auto;
+}
+tr, td
+{
+	text-align: left;
+	border: 1px solid black;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+footer
+{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 20px;
+	height: 25px;
+}

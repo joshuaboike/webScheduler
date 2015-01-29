@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br><h2><table bgcolor = #ffcb05>
+{% if api_error %}
+	<br>
+	<td>Whoops! There does not appear to be any courses for this subject this term.</td>
+	</table>
+{% else %}
+	<td> Select Your Course </td>
+	</table></h2>
+{% endif %}
+
+
+<table bgcolor = white>
+{% set count = 0 %}
+{% for number in catalogNbers %}
+	{% if number['CatalogNumber'] %}
+	<tr>
+		<td><a href="/{{term}}/{{school}}/{{subject}}/{{number['CatalogNumber']}}">{{ number['CatalogNumber'] }} </a></td>
+		<td>{{ number['CourseDescr'] }}</td>
+	</tr>
+	{% set count = 1 %}
+	{% else %}
+		{% if count == 0 %}
+	<tr><td>Course information for this subject is not available at this time</td></tr>
+		{% set count = 1 %}
+		{% endif %}
+	{% endif %}
+{% endfor %}
+</table>
+
+</br>
+<footer><center><table bgcolor = #ffcb05>
+<td><a href='/'><font color = black> Back To Main Page </td><td>_______________</td>
+<td><a href='/mybackpack'><font color = black> View Your Backpack!
+</font></a></td></table></center>
+</footer>
+
+{% endblock %}

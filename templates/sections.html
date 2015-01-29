@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br><h2><table bgcolor = #ffcb05>
+{% if api_error %}
+	<br>
+	<td>Whoops! There does not appear to be any sections for this course this term.</td>
+	</table>
+{% else %}
+	<td> Select Your Section for {{subject}} {{catalogNbers}}</td>
+	</table></h2>
+{% endif %}
+
+<table bgcolor = white>
+<tr>
+	<td><center>Section Number</td>
+	<td><center>Type</td>
+	<td><center>Instructors</td>
+	<td><center>Credit Hours</td>
+	<td><center>Days</td>
+	<td><center>Times</td>
+	<td><center>Backpack</td>
+</tr>
+	{% set count = 0 %}
+{% for number in sectionNbers %}
+
+	{% if number['SectionNumber'] %}
+	<tr>
+		<td>{{ number['SectionNumber'] }}</td>
+		<td>{{ number['SectionType'] }}</td>
+	{% if number['Meeting'] %}
+		<td>{{ number['Meeting']['Instructors'] }}</td>
+	{% else %}
+		<td> N/A </td>
+	{% endif %}
+		<td>{{ number['CreditHours'] }}</td>
+	{% if number['Meeting'] %}
+		<td>{{ number['Meeting']['Days'] }}</td>
+		<td>{{ number['Meeting']['Times'] }}</td>
+	{% else %}
+		<td> N/A </td>
+		<td> N/A </td>
+	{% endif %}
+	{% if number['Meeting'] %}
+			<td><form method="post">
+		   <button name = "course" onclick="alert('Added to Backpack')"
+		   value = 
+		   {{subject}}&nbsp;{{catalogNbers}}&nbsp;{{number['SectionNumber']}}&nbsp;{{number['SectionType'] }}&nbsp;{{number['Meeting']['Days'] }}&nbsp;{{number['Meeting']['Times']}} type = "submit">Add to Backpack</button>
+			</form></td>
+	{% else %}
+			<td><form method="post">
+		   <button name = "course" onclick="alert('Added to Backpack')"
+		   value = 
+		   {{subject}}&nbsp;{{catalogNbers}}&nbsp;{{number['SectionNumber']}}&nbsp;{{number['SectionType'] }}&nbsp;Meeting_Days/Times_N/A&nbsp;
+		   type = "submit">Add to Backpack</button>
+			</form></td>
+	{% endif %}
+			</center></td>
+	</tr>
+	{% set count = 1 %}
+	{% endif %}
+	{% if count == 0 %}
+	<td> Section(s) exist(s), but section information is not yet available. Check back soon! </td>
+	<td bgcolor = #00274c></td> <td bgcolor = #00274c></td><td bgcolor = #00274c></td> <td bgcolor = #00274c></td>
+	<td bgcolor = #00274c></td> <td bgcolor = #00274c></td></tr>
+		{% set count = 1 %}
+	{% endif %}
+{% endfor %}
+</table>
+
+</br>
+<footer><center><table bgcolor = #ffcb05>
+<td><a href='/'><font color = black> Back To Main Page </td><td>_______________</td>
+<td><a href='/mybackpack'><font color = black> View Your Backpack!
+</font></a></td></table></center>
+</footer>
+
+{% endblock %}

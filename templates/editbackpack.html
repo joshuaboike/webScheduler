@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br><h2><center> <table bgcolor = #ffcb05>
+{% if api_error %}
+	<br>
+	<td>Whoops! There does not appear to be any courses for this subject this term.</td>
+	</table>
+{% else %}
+	<td> Edit Your Backpack!</td>
+	</table></center></h2>
+{% endif %}
+
+<table style="width:40%" bgcolor = white>
+{% for class in backpack %}
+<tr>
+	<td><center>{{ class }}</td>
+
+	<td><form method="remove"><center>
+	 	<button name = "removeCourse" 
+	 	   onclick="alert('Removed from Backpack')"
+	 	   <td><a href='/mybackpack'><font color = black>
+		   Remove from Backpack</button></center>
+
+		</form>
+		</center></td>
+	</tr>
+{% endfor %}
+
+</table>
+
+</br>
+<footer><center><table bgcolor = #ffcb05>
+<td><a href='/'><font color = black> Back To Main Page </td><td>_______________</td>
+<td><a href='/mybackpack'><font color = black> View Your Backpack!
+</font></a></td></table></center>
+</footer>
+
+{% endblock %}

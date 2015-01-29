@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br><h2><center> <table bgcolor = #ffcb05>
+{% if api_error %}
+	<br>
+	<td>Whoops! There does not appear to be any valid courses in your backpack.</td>
+	</table>
+{% else %}
+	<td> Your Backpack!</td>
+	</table></center></h2>
+{% endif %}
+
+<table style="width:40%" bgcolor = white>
+{% for class in backpack %}
+<tr>
+	<td><center>{{ class }}</td>
+</tr>
+
+{% endfor %}
+</table>
+
+</br>
+<center><table bgcolor = #ffcb05>
+<td><a href='/editbackpack'><font color = black> Edit My Backpack </font></a></td>
+</table>
+
+</br>
+<footer><center><table bgcolor = #ffcb05>
+<td><a href='/'><font color = black> Back To Main Page </td><td>_______________</td>
+<td><a href='/mybackpack'><font color = black> View Your Backpack!
+</font></a></td></table></center>
+</footer>
+
+{% endblock %}
